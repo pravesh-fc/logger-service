@@ -30,6 +30,11 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 
+  config.active_job.queue_adapter = :sidekiq
+
+  config.active_job.queue_name_prefix = "logger-service"
+  config.active_job.queue_name_delimiter = "-"
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -58,4 +63,13 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  config.action_mailer.smtp_settings = {
+    :user_name => 'logger-service',
+    :password => 'Ads123***',
+    :domain => 'https://full-cycle.com',
+    :address => 'smtp.sendgrid.net',
+    :port => 25587,
+    :authentication => :plain,
+    :enable_starttls_auto => false
+  }
 end

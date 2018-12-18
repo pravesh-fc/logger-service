@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_14_115153) do
+ActiveRecord::Schema.define(version: 2018_12_18_034912) do
 
   create_table "events", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "app_name", null: false
@@ -28,6 +28,14 @@ ActiveRecord::Schema.define(version: 2018_12_14_115153) do
     t.integer "log_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "app_name", null: false
+    t.string "email", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["app_name", "email"], name: "index_subscriptions_on_app_name_and_email", unique: true
   end
 
 end
