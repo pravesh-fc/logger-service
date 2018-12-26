@@ -17,9 +17,9 @@ class V1::LoggerController < ApplicationController
       if param_duration.to_i == 0
         logs = Log.where('created_at > ?', 24.hours.ago).group(:log_type, "date_format(created_at, '%Y%m%d %H')", :status).count
       elsif param_duration.to_i == 1
-        logs = Log.where('created_at > ?', 1.month.ago).group(:log_type, "date_format(created_at, '%Y%m%d')", :status).count
+        logs = Log.where('created_at > ?', 1.month.ago).group(:log_type, "date_format(created_at, '%Y %m %d')", :status).count
       else
-        logs = Log.where('created_at > ?', 1.year.ago).group(:log_type, "date_format(created_at, '%Y%m')", :status).count
+        logs = Log.where('created_at > ?', 1.year.ago).group(:log_type, "date_format(created_at, '%Y %m')", :status).count
       end
       render :json => { data: {logs: logs}, status: 200 }
     rescue Exception => exception

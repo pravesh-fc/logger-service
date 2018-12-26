@@ -13,8 +13,10 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
   socket: /var/run/mysqld/mysqld.sock
 
 development:
@@ -50,5 +52,3 @@ test:
 production:
   <<: *default
   database: logger-service_production
-  username: logger-service
-  password: <%= ENV['LOGGER-SERVICE_DATABASE_PASSWORD'] %>

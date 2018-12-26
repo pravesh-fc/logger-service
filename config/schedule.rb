@@ -20,6 +20,10 @@
 # Learn more: http://github.com/javan/whenever
 #
 set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
-every 1.minute do # 1.minute 1.day 1.week 1.month 1.year is also supported
-  rake "app:start_jobs"
+every 5.minute do # 1.minute 1.day 1.week 1.month 1.year is also supported
+  rake "app:payment_health"
+end
+
+every 3.minute do # 1.minute 1.day 1.week 1.month 1.year is also supported
+  rake "app:application_health"
 end

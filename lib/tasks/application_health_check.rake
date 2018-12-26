@@ -1,9 +1,8 @@
-class CheckApplicationHealthJob < ApplicationJob
-  require 'net/http'
-  require 'uri'
-  queue_as :urgent
-  # extend HealthEndpoint
-  def perform
+require 'net/http'
+require 'uri'
+namespace :app do
+  desc "application health"
+  task :application_health => :environment do
     app = 'chartrequest.com'
     log = Log.create(app_name: app,
                status: 'ok',

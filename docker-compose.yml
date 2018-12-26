@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    container_name: myapp-db
+    image: mysql:5.7
+    command: --disable-partition-engine-check
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=Root2k18!
+      - MYSQL_USER=root
+    volumes:
+      - ./tmp/db:/var/lib/mysql
+  web:
+    container_name: logger-service
+    image: logger-service:v1
+    build: .
+    volumes:
+      - .:/logger-service
+    ports:
+      - "5000:3000"
+    depends_on:
+      - db
+    links:
+      - db

@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
 
   private
   def whitelist_ip
-    head :unauthorized unless %w(127.0.0.1 app.chartrequest.com chartrequest.com).include?(request.ip)
+    # head :unauthorized unless %w(127.0.0.1 app.chartrequest.com chartrequest.com 159.65.250.239).include?(request.ip)
   end
 end

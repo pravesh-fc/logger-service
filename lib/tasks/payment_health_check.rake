@@ -1,9 +1,8 @@
-class CheckPaymentGatewayJob < ApplicationJob
-  require 'net/http'
-  require 'uri'
-  queue_as :urgent
-  # extend HealthEndpoint
-  def perform()
+require 'net/http'
+require 'uri'
+namespace :app do
+  desc "Payment health"
+  task :payment_health => :environment do
     app = 'stripe.com'
     log = Log.create(app_name: app,
                      log_type: 4)
