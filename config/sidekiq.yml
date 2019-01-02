@@ -1,7 +1,5 @@
-:concurrency: 1
+:verbose: true
+:concurrency: 25
 :queues:
-  - default
-  - mailers
-
-  - mysite_default
-  - mysite_mailers
+  - [logger-service-mailers, 7]
+  - [logger-service-default, 5]

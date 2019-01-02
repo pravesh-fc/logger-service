@@ -30,6 +30,8 @@ gem 'redis-namespace'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'dotenv-rails'
 
+gem 'sidekiq'
+
 gem 'whenever', require: false
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

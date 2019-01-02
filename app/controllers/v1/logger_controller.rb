@@ -34,7 +34,7 @@ class V1::LoggerController < ApplicationController
                   details: params[:event][:details],
                   start_date: params[:event][:start_date],
                   end_date: params[:event][:end_date])
-      SendEmailForUpdatesJob.perform_now(event, request.headers["SERVER_NAME"])
+      SendEmailForUpdatesJob.perform_in(30.seconds, event, request.headers["SERVER_NAME"])
       render :json => { status: 200 }
     rescue Exception => exception
       render :json => { message: exception.message, status: 500}
